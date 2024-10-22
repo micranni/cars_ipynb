@@ -2,9 +2,11 @@
 
 ## Introduction
 
-This project explores the development of various regression models to predict the price of used cars based on parameters such as manufacturer, model, condition, cylinders, odometer, size, type, paint color, fuel type, transmission type, title status, and drive type. The final model utilizes a Random Forest Regression algorithm, trained on a dataset of used car listings from various online sources.
+This project explores the development of various regression models to predict the price of used cars based on parameters such as manufacturer, model, condition, cylinders, odometer, size, type, paint color, fuel type, transmission type, title status, and drive type. The final model utilizes a Random Forest Regression algorithm, trained on a dataset of used car listings from various online sources. After preprocessing, the final dataframe consisted of nearly 80,000 rows.
 
 Link to the original dataset: [Used Car Dataset](https://www.kaggle.com/datasets/austinreese/craigslist-carstrucks-data)
+
+The data was prepared using a combination of one-hot encoding for columns with five or less unique values, and label encoding for columns with greater than 5 unique values.
 
 ### What is Random Forest Regression?
 
@@ -100,7 +102,7 @@ Manufacturer: 13
 Model: 3190
 ```
 
-As you can see, without tuning the RFR model is able to predict the price of the car with an accuracy of 97.6%.
+As shown, even without tuning, the RFR model is able to predict the price of the car with an accuracy of 97.6%.
 
 
 
