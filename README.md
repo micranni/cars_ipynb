@@ -21,7 +21,21 @@ Linear regression models are a simple machine learning technique used to predict
 
 ### Tuned Random Forest Regression Model:
 
-In a Random Forest Regressor (RFR), tuning hyperparameters like those in param_grid helps improve model performance. For example, n_estimators controls the number of trees in the forest; increasing this can improve accuracy but may slow down training. max_depth limits the depth of each tree, preventing overfitting by controlling complexity. min_samples_split and min_samples_leaf ensure each tree branch has enough data points before splitting, helping avoid overfitting. bootstrap decides whether to use bootstrapped datasets for each tree, affecting model variance. The RandomizedSearchCV method randomly tests different combinations of these hyperparameters to find the best configuration for the model.
+In a Random Forest Regressor (RFR), tuning hyperparameters like those in param_grid helps improve model performance. 
+
+```
+param_grid = {
+    'n_estimators': [100, 200, 500, 1000],         
+    'max_depth': [None, 10, 20, 30, 40],           
+    'min_samples_split': [2, 5, 10],               
+    'min_samples_leaf': [1, 2, 4],                 
+    'bootstrap': [True, False]                     
+}
+
+random_search = RandomizedSearchCV(estimator=rf_model, param_distributions=param_grid, n_iter=10, cv=3, verbose=2, random_state=42, n_jobs=-1)
+```
+
+For example, n_estimators controls the number of trees in the forest; increasing this can improve accuracy but may slow down training. max_depth limits the depth of each tree, preventing overfitting by controlling complexity. min_samples_split and min_samples_leaf ensure each tree branch has enough data points before splitting, helping avoid overfitting. bootstrap decides whether to use bootstrapped datasets for each tree, affecting model variance. The RandomizedSearchCV method randomly tests different combinations of these hyperparameters to find the best configuration for the model.
 
 In this case however, the difference between the tuned and untuned RF models was marginal; in fact the untuned version performed slightly more accurately.
 
