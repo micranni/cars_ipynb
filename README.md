@@ -64,4 +64,41 @@ This model made the best price predictions with an R-squared value of nearly 0.8
 
 ## Usage + Results
 
+The following is a demonstration of the RFR model. The function pulls a random row from the dataframe, and calls the model to predict the cars price based on all columns (except for price). 
+
+```
+def test_random_row(model, df):
+    random_row = df.sample(n=1)
+
+    actual_price = random_row['price'].values[0]  
+    test_features = random_row.drop(columns=['price'])  
+    car_manufacturer = random_row['manufacturer'].values[0]
+    car_model = random_row['model'].values[0]
+
+    print("Testing with the following features:")
+    print(test_features)
+    
+    predicted_price = model.predict(test_features)[0]
+    
+    print(f"\nActual Price: ${actual_price:,.2f}")
+    print(f"Predicted Price: ${predicted_price:,.2f}")
+    print(f"Manufacturer: {car_manufacturer}")
+    print(f"Model: {car_model}")
+
+
+test_random_row(final_rf_model, df)
+```
+
+The following output is for a Hyundai Santa-fe:
+
+```
+Actual Price: $28,000.00
+Predicted Price: $27,322.48
+Manufacturer: 13
+Model: 3190
+```
+
+As you can see, without tuning the RFR model is able to predict the price of the car with an accuracy of 97.6%.
+
+
 
